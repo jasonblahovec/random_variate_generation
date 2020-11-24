@@ -36,3 +36,14 @@ Every class' input parameters follow a similar format:
   b unif_mod: the modulus used in the LCG used in uniform calculation.  defaults to (2^31)-1.
   
   
+Here is an example call from each class. We use default seed in each example (the second parameter)
+
+1. Print 1000 Uniform(3,5) observations:
+    
+    u = generate_uniform( n = 1000 , seed = 412 , a = 3 , b = 5 , mult = 16807 , mod = (2**31)-1 ) 
+    print(u.observations)
+
+ 2. Print 10000 Normal(0,1) observations:
+    
+    n = generate_normal( n = 10000 , seed = 412 , mu = 0 , sigma = 1 , mult = 16807 , mod = (2**31)-1 ) 
+    print(n.observations) 
