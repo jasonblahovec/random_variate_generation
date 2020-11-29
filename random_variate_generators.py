@@ -19,7 +19,23 @@ class generate_bernoulli():
         
         self.observations = np.where(u1.observations > self.p, 0, 1)   
 
+class generate_binomial():
     
+    def __init__(self, n = 1000, seed = 412, _trials = 10, _p = .5, mult = 16807, mod = (2**31)-1):
+        self.n = n
+        self.seed = seed
+        self.mult = mult
+        self.mod = mod
+        
+        self.trials = _trials
+        self.p = _p
+        
+        self.get_observations()
+    
+    def get_observations(self):
+        uniforms = np.resize(generate_uniform(n = self.n*self.trials, seed = self.seed, mult = self.mult, mod = self.mod).observations,[self.n,self.trials])
+        self.observations = np.sum(np.array([[1 if flip < self.p else 0 for flip in u] for u in uniforms]),axis = 1)
+        
 class generate_erlang():
     def __init__(self, n = 1000, seed = 412, rate = .5, k = 2, mult = 16807, mod = (2**31)-1):
         self.n = n
