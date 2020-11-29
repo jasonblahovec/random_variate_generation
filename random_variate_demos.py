@@ -20,7 +20,41 @@ class demo_bernoulli:
         print([np.mean(u_n2.observations), np.std(u_n2.observations)])
         print([np.mean(u_n3.observations), np.std(u_n3.observations)])
 
+class demo_binomial():
+    
+    def __init__(self,_n,_trials,_p):
+        n_1 = _n
+        n_2 = 2*n_1
+        n_3 = 2*n_2
 
+        u_n1   = rv.generate_binomial(n = n_1  , seed = 412, _trials = _trials, _p = .5, mult = 16807, mod = (2**31)-1)
+        u_n2  = rv.generate_binomial(n = n_2 , seed = 412, _trials = _trials, _p = .5, mult = 16807, mod = (2**31)-1)
+        u_n3 = rv.generate_binomial(n = n_3, seed = 412, _trials = _trials, _p = .5, mult = 16807, mod = (2**31)-1)
+
+        fig, axs = plt.subplots(1, 3, sharey=True, tight_layout=False,figsize=(55,20))
+
+        axs[0].hist(u_n1.observations, bins=5)
+        axs[1].hist(u_n2.observations, bins=10)
+        axs[2].hist(u_n3.observations, bins=20)
+
+        axs[0].set_title('Binomial Results, n = ' + str(n_1), fontsize = 45)
+        axs[0].set_xlabel('observed value', fontsize = 45)
+        axs[0].set_ylabel('frequency', fontsize = 45)
+
+
+        axs[1].set_title('Binomial Results, n = '+ str(n_2), fontsize = 45)
+        axs[1].set_xlabel('observed value', fontsize = 45)
+        axs[1].set_ylabel('frequency', fontsize = 45)
+
+        axs[2].set_title('Binomial Results, n = '+ str(n_3), fontsize = 45)
+        axs[2].set_xlabel('observed value', fontsize = 45)
+        axs[2].set_ylabel('frequency', fontsize = 45)
+        
+        plt.savefig("binomial.png")
+        print([np.mean(u_n1.observations), np.std(u_n1.observations)])
+        print([np.mean(u_n2.observations), np.std(u_n2.observations)])
+        print([np.mean(u_n3.observations), np.std(u_n3.observations)])
+        
 class demo_erlang:
     
     def __init__(self,_n,_rate, _k):
