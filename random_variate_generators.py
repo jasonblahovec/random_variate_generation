@@ -177,7 +177,7 @@ class generate_weibull():
         self.get_observations()
     
     def get_observations(self):
-        uniforms = rv.generate_uniform(n = self.n, seed = self.seed, mult = self.mult, mod = self.mod).observations
+        uniforms = generate_uniform(n = self.n, seed = self.seed, mult = self.mult, mod = self.mod).observations
         self.observations = [((-1*np.log((1-u)))**(1/self.shape))*self.scale for u in uniforms]
        
         
